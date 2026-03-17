@@ -1,0 +1,193 @@
+---
+// Contact / Free Quote booking form section
+const services = [
+  "Landscape Install",
+  "Sprinklers",
+  "Maintenance",
+  "Hardscaping",
+  "Tree Care",
+  "Fertilizer",
+  "Other",
+];
+---
+
+<section id="contact" class="relative overflow-hidden bg-surface py-24">
+  <!-- Decorative background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-blue/5 via-transparent to-brand-blue/5"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid gap-16 lg:grid-cols-5">
+      <!-- Left column - info -->
+      <div class="lg:col-span-2 animate-on-scroll">
+        <p class="font-heading text-sm font-bold uppercase tracking-widest text-brand-blue">
+          Get Started
+        </p>
+        <h2 class="mt-3 font-heading text-h2 font-extrabold text-brand-black">
+          Request Your Free Estimate
+        </h2>
+        <p class="mt-4 text-body-lg leading-relaxed text-text-secondary">
+          Tell us about your project and we'll get back to you within 24 hours with a free, no-obligation estimate.
+        </p>
+
+        <!-- Contact info -->
+        <div class="mt-10 space-y-6">
+          <div class="border-l-2 border-brand-blue pl-5">
+            <p class="text-sm font-semibold text-text-muted">Call or Text</p>
+            <a href="tel:+12085551234" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
+              (208) 555-1234
+            </a>
+          </div>
+          <div class="border-l-2 border-brand-blue pl-5">
+            <p class="text-sm font-semibold text-text-muted">Email Us</p>
+            <a href="mailto:info@summitviewlandscape.com" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
+              info@summitviewlandscape.com
+            </a>
+          </div>
+          <div class="border-l-2 border-brand-blue pl-5">
+            <p class="text-sm font-semibold text-text-muted">Service Area</p>
+            <p class="text-body font-bold text-brand-black">
+              Treasure Valley &amp; Surrounding Areas
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column - form -->
+      <div class="lg:col-span-3 animate-on-scroll" style="--delay: 150ms">
+        <form
+          id="contact-form"
+          class="rounded-2xl bg-card p-8 shadow-xl ring-1 ring-border sm:p-10"
+        >
+          <div class="grid gap-6 sm:grid-cols-2">
+            <!-- First Name -->
+            <div>
+              <label for="first-name" class="block text-sm font-semibold text-brand-black">
+                First Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                required
+                autocomplete="given-name"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none"
+                placeholder="John"
+              />
+            </div>
+            <!-- Last Name -->
+            <div>
+              <label for="last-name" class="block text-sm font-semibold text-brand-black">
+                Last Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                required
+                autocomplete="family-name"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none"
+                placeholder="Smith"
+              />
+            </div>
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-semibold text-brand-black">
+                Email <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none"
+                placeholder="john@example.com"
+              />
+            </div>
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-sm font-semibold text-brand-black">
+                Phone <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none"
+                placeholder="(208) 555-1234"
+              />
+            </div>
+            <!-- Service -->
+            <div class="sm:col-span-2">
+              <label for="service" class="block text-sm font-semibold text-brand-black">
+                Service Interested In
+              </label>
+              <select
+                id="service"
+                name="service"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none cursor-pointer"
+              >
+                <option value="">Select a service...</option>
+                {services.map((s) => <option value={s}>{s}</option>)}
+              </select>
+            </div>
+            <!-- Message -->
+            <div class="sm:col-span-2">
+              <label for="message" class="block text-sm font-semibold text-brand-black">
+                Tell Us About Your Project
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none resize-y"
+                placeholder="Describe what you're looking for — size of yard, project ideas, timeline, etc."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-cta px-8 py-4 text-body font-bold text-white shadow-lg transition-all duration-200 hover:bg-cta-hover hover:shadow-xl cursor-pointer sm:w-auto"
+          >
+            Send My Free Quote Request
+          </button>
+
+          <p class="mt-4 text-sm text-text-muted">
+            We'll respond within 24 hours. No spam, ever.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
+    const originalText = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+
+    // Simulate send (replace with real form handler)
+    setTimeout(() => {
+      btn.textContent = "Quote Request Sent!";
+      btn.classList.remove("bg-cta", "hover:bg-cta-hover");
+      btn.classList.add("bg-green-600");
+      form.reset();
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.classList.add("bg-cta", "hover:bg-cta-hover");
+        btn.classList.remove("bg-green-600");
+      }, 3000);
+    }, 1500);
+  });
+</script>

@@ -1,0 +1,111 @@
+---
+// Footer with links, contact info, and social
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-black border-t border-white/10">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="#" class="flex items-center gap-3">
+          <img
+            src="/images/logo.webp"
+            alt="Summit View Landscape"
+            width="40"
+            height="40"
+            class="h-10 w-10 object-contain"
+          />
+          <div>
+            <span class="block font-heading text-lg font-bold leading-tight text-white">
+              Summit View
+            </span>
+            <span class="block text-xs font-semibold uppercase tracking-widest text-white/60">
+              Landscape
+            </span>
+          </div>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+          Locally owned landscaping in Idaho. Transforming outdoor spaces with honest, quality work since day one.
+        </p>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white">
+          Services
+        </h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="/services/landscape-install" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Landscape Install</a></li>
+          <li><a href="/services/sprinklers" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Sprinklers</a></li>
+          <li><a href="/services/maintenance" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Maintenance</a></li>
+          <li><a href="/services/hardscaping" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Hardscaping</a></li>
+          <li><a href="/services/tree-care" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Tree Care</a></li>
+          <li><a href="/services/fertilizer" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Fertilizer</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white">
+          Company
+        </h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="/about" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">About Us</a></li>
+          <li><a href="/#testimonials" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Reviews</a></li>
+          <li><a href="/book" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">Get a Quote</a></li>
+          <li><a href="/services" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">All Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white">
+          Contact
+        </h3>
+        <ul class="mt-4 space-y-3">
+          <li>
+            <a href="tel:+12085551234" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">
+              (208) 555-1234
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@summitviewlandscape.com" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">
+              info@summitviewlandscape.com
+            </a>
+          </li>
+          <li class="text-sm text-white/60">Treasure Valley, Idaho</li>
+        </ul>
+        <!-- Social -->
+        <div class="mt-6 flex gap-4">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-white/60 transition-colors duration-200 hover:text-white cursor-pointer"
+            aria-label="Follow us on Facebook"
+          >
+            Facebook
+          </a>
+          <span class="text-white/20">|</span>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-white/60 transition-colors duration-200 hover:text-white cursor-pointer"
+            aria-label="Follow us on Instagram"
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 border-t border-white/10 pt-8 text-center">
+      <p class="text-sm text-white/40">
+        &copy; {currentYear} Summit View Landscape. All rights reserved. Proudly serving Idaho.
+      </p>
+    </div>
+  </div>
+</footer>

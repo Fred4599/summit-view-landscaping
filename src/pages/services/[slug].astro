@@ -1,0 +1,148 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { services } from "../../data/services";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+const otherServices = services.filter((s) => s.slug !== service.slug);
+---
+
+<Layout
+  title={`${service.title} | Summit View Landscape`}
+  description={service.description}
+>
+  <Navbar />
+  <main>
+    <!-- Hero -->
+    <section class="relative flex items-center overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <div class="absolute inset-0">
+        <img
+          src={service.image}
+          alt={service.title}
+          class="h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-black/85 via-brand-black/70 to-brand-black/50"></div>
+      </div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <a
+            href="/services"
+            class="hero-fade inline-flex items-center gap-1 font-heading text-sm font-bold uppercase tracking-widest text-brand-blue-light transition-colors hover:text-white"
+            style="--delay: 200ms"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            All Services
+          </a>
+          <h1 class="hero-fade mt-3 font-heading text-h1 font-extrabold leading-tight text-white sm:text-display" style="--delay: 400ms">
+            {service.title}
+          </h1>
+          <p class="hero-fade mt-6 max-w-xl text-body-lg leading-relaxed text-white/80" style="--delay: 600ms">
+            {service.description}
+          </p>
+          <a
+            href="/book"
+            class="hero-fade mt-8 inline-flex items-center gap-2 rounded-lg bg-cta px-6 py-3 text-body font-bold text-white shadow-lg transition-all duration-200 hover:bg-cta-hover hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+            style="--delay: 800ms"
+          >
+            Get a Free Quote
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="bg-white py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="font-heading text-h2 font-extrabold text-brand-black animate-on-scroll" style="--delay: 100ms">
+            What's Included
+          </h2>
+          <p class="mt-4 text-body-lg leading-relaxed text-text-secondary animate-on-scroll" style="--delay: 200ms">
+            Here's what you can expect when you work with us for {service.title.toLowerCase()}.
+          </p>
+        </div>
+        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {service.details.map((detail, i) => (
+            <div class="animate-on-scroll flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 p-6" style={`--delay: ${(i + 1) * 100}ms`}>
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                <svg class="h-5 w-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <span class="text-body font-medium text-brand-black">{detail}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-brand-black py-20">
+      <div class="mx-auto max-w-4xl px-6 text-center lg:px-8 animate-on-scroll">
+        <h2 class="font-heading text-h2 font-extrabold text-white sm:text-h1">
+          Ready to Get Started?
+        </h2>
+        <p class="mt-4 text-body-lg leading-relaxed text-white/70">
+          Tell us about your project and we'll put together a free, no-obligation estimate for {service.title.toLowerCase()}.
+        </p>
+        <a
+          href="/book"
+          class="mt-8 inline-flex items-center justify-center rounded-lg bg-cta px-8 py-4 text-body font-bold text-white shadow-lg transition-all duration-200 hover:bg-cta-hover hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+        >
+          Request Your Free Estimate
+        </a>
+      </div>
+    </section>
+
+    <!-- Other Services -->
+    <section class="bg-white py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 class="font-heading text-h2 font-extrabold text-brand-black text-center animate-on-scroll" style="--delay: 100ms">
+          Explore Our Other Services
+        </h2>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {otherServices.map((s, i) => (
+            <a
+              href={`/services/${s.slug}`}
+              class="animate-on-scroll group overflow-hidden rounded-xl shadow-md transition-all duration-200 hover:shadow-xl hover:-translate-y-1"
+              style={`--delay: ${(i + 1) * 100}ms`}
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  width="400"
+                  height="250"
+                />
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading text-lg font-bold text-brand-black group-hover:text-brand-blue transition-colors">
+                  {s.title}
+                </h3>
+                <p class="mt-1 text-sm text-text-secondary line-clamp-2">
+                  {s.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

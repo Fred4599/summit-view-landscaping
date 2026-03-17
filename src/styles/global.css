@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors - matched to Summit View logo */
+  --color-brand-blue: #1436C7;
+  --color-brand-blue-light: #2563EB;
+  --color-brand-blue-dark: #0F2A9E;
+  --color-brand-black: #0F172A;
+  --color-brand-white: #FFFFFF;
+
+  /* Semantic Colors */
+  --color-surface: #F8FAFC;
+  --color-surface-alt: #F1F5F9;
+  --color-card: #FFFFFF;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+  --color-border: #E2E8F0;
+  --color-cta: #1436C7;
+  --color-cta-hover: #0F2A9E;
+
+  /* Font families */
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Font sizes */
+  --text-display: 3.5rem;
+  --text-h1: 2.75rem;
+  --text-h2: 2.25rem;
+  --text-h3: 1.5rem;
+  --text-h4: 1.25rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-on-scroll,
+  .hero-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Scroll-triggered fade-up animation */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--delay, 0ms);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero staggered fade-in */
+.hero-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.7s ease-out forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

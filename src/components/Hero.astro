@@ -1,0 +1,70 @@
+---
+// Hero section with background image, headline, and CTA
+---
+
+<section class="relative flex min-h-dvh items-center overflow-hidden">
+  <!-- Background image with overlay -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/portfolio/hero-patio-dusk.jpg"
+      alt="Summit View Landscape outdoor patio with pergola and string lights at dusk"
+      class="h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black/80 via-brand-black/60 to-brand-black/40"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative mx-auto max-w-7xl px-6 py-32 lg:px-8">
+    <div class="max-w-2xl">
+      <!-- Badge -->
+      <div class="hero-fade mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm" style="--delay: 200ms">
+        <span class="h-2 w-2 rounded-full bg-green-400"></span>
+        <span class="text-sm font-semibold text-white/90">Serving the Treasure Valley &amp; Beyond</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-fade font-heading text-h1 font-extrabold leading-tight text-white sm:text-display" style="--delay: 400ms">
+        Idaho's Trusted
+        <span class="text-brand-blue-light">Landscape</span>
+        Professionals
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="hero-fade mt-6 max-w-xl text-body-lg leading-relaxed text-white/80" style="--delay: 600ms">
+        From stunning outdoor living spaces to reliable lawn maintenance, Summit View Landscape transforms your property into something extraordinary.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-fade mt-10 flex flex-col gap-4 sm:flex-row" style="--delay: 800ms">
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center rounded-lg bg-cta px-8 py-4 text-body font-bold text-white shadow-lg transition-all duration-200 hover:bg-cta-hover hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+        >
+          Get Your Free Estimate
+        </a>
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center rounded-lg border-2 border-white/30 bg-white/5 px-8 py-4 text-body font-bold text-white backdrop-blur-sm transition-all duration-200 hover:border-white/50 hover:bg-white/10 cursor-pointer"
+        >
+          View Our Services
+        </a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="hero-fade mt-12 flex flex-wrap items-center gap-8 border-t border-white/10 pt-8" style="--delay: 1000ms">
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-semibold text-brand-blue-light">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-sm font-semibold text-white">5.0 on Facebook</span>
+        </div>
+        <div class="text-sm text-white/70">
+          <span class="font-bold text-white">Locally Owned</span> &middot; Idaho Based
+        </div>
+        <div class="text-sm text-white/70">
+          <span class="font-bold text-white">Licensed</span> &amp; Insured
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

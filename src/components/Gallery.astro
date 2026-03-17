@@ -1,0 +1,62 @@
+---
+// Portfolio gallery showcasing real project photos
+const photos = [
+  { src: "/images/portfolio/gallery-xeriscaping.jpg", alt: "Xeriscaping with dry creek bed and boulder features" },
+  { src: "/images/portfolio/hero-patio-dusk.jpg", alt: "Outdoor patio with pergola and string lights at dusk" },
+  { src: "/images/portfolio/gallery-flower-garden.jpg", alt: "Vibrant black-eyed Susan flower garden" },
+  { src: "/images/portfolio/gallery-paver-patio.jpg", alt: "Paver patio with outdoor seating area" },
+  { src: "/images/portfolio/lawn-maintenance.jpg", alt: "Manicured front yard with trimmed shrubs and flower beds" },
+  { src: "/images/portfolio/gallery-stone-path.jpg", alt: "Natural stone pathway with gravel border" },
+  { src: "/images/portfolio/gallery-raised-beds.jpg", alt: "Custom cedar raised garden beds" },
+  { src: "/images/portfolio/gallery-front-yard.jpg", alt: "Front yard flower bed border along walkway" },
+  { src: "/images/portfolio/landscape-design.jpg", alt: "Backyard landscape with arborvitae trees and rock beds" },
+  { src: "/images/portfolio/gallery-flower-beds.jpg", alt: "Front yard flower beds with colorful plantings" },
+  { src: "/images/portfolio/gallery-backyard.jpg", alt: "Backyard with fire pit and stone features" },
+  { src: "/images/portfolio/gallery-property.jpg", alt: "Residential property with professional landscaping" },
+];
+---
+
+<section id="gallery" class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="mx-auto max-w-2xl text-center animate-on-scroll">
+      <p class="font-heading text-sm font-bold uppercase tracking-widest text-brand-blue">
+        Our Work
+      </p>
+      <h2 class="mt-3 font-heading text-h2 font-extrabold text-brand-black sm:text-h1">
+        Real Projects, Real Results
+      </h2>
+      <p class="mt-4 text-body-lg leading-relaxed text-text-secondary">
+        Every photo is from an actual Summit View project right here in Idaho. No stock photos — just honest work we're proud of.
+      </p>
+    </div>
+
+    <!-- Masonry-style gallery grid -->
+    <div class="mt-16 columns-1 gap-4 sm:columns-2 lg:columns-3">
+      {
+        photos.map((photo, i) => (
+          <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl shadow-sm ring-1 ring-border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-on-scroll" style={`--delay: ${(i % 3) * 100}ms`}>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="h-auto w-full object-cover"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 text-center animate-on-scroll">
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center rounded-lg bg-cta px-8 py-4 text-body font-bold text-white shadow-lg transition-all duration-200 hover:bg-cta-hover hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+      >
+        Start Your Project
+      </a>
+    </div>
+  </div>
+</section>
