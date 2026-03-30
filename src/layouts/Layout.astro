@@ -4,12 +4,134 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  canonicalPath?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = "Summit View Landscape — Professional landscaping services in Idaho. Lawn care, hardscaping, irrigation, and more.",
+  description = "Summit View Landscape — Professional landscaping services in Nampa, Idaho. Lawn care, hardscaping, irrigation, tree care, and more serving the Treasure Valley.",
+  ogImage = "/images/portfolio/hero-patio-dusk.jpg",
+  canonicalPath,
+  jsonLd,
 } = Astro.props;
+
+const siteUrl = "https://www.summitviewlandscape.com";
+const canonicalUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+
+// Default LocalBusiness structured data present on every page
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LandscapingBusiness",
+  "@id": `${siteUrl}/#business`,
+  name: "Summit View Landscape LLC",
+  alternateName: "Summit View Landscape",
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.webp`,
+  image: `${siteUrl}/images/portfolio/hero-patio-dusk.jpg`,
+  description: "Locally owned landscaping company in Nampa, Idaho serving the Treasure Valley. Landscape installation, hardscaping, sprinklers, maintenance, tree care, fertilizer, seasonal clean-ups, and snow removal.",
+  telephone: "+12086152104",
+  email: "info@summitviewlandscape.co",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Nampa",
+    addressRegion: "ID",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 43.5407,
+    longitude: -116.5635,
+  },
+  areaServed: [
+    { "@type": "City", name: "Nampa", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Boise", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Meridian", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Eagle", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Star", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Caldwell", containedInPlace: { "@type": "State", name: "Idaho" } },
+    { "@type": "City", name: "Kuna", containedInPlace: { "@type": "State", name: "Idaho" } },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "16:00",
+    },
+  ],
+  priceRange: "$$",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "4",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Nate Burke" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "Great quality workmanship! Micah was a great communicator, worked with me on a project that I was unsure about - and acted as a true expert. Kept a clean job site, and was very professional and courteous.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Danielle McCauley" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "I have a property management company and I hired Summit View Landscape for a big job. The work not only exceeded my expectations but I felt like they did more than we discussed. It's beautiful and perfect. I highly recommend.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Kathy Westcott" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "We used Summit View for a fall yard cleanup for bushes and trees that were out of control. They conquered the job in less than a day. I appreciated their responsiveness, knowledge and expertise!",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Kyle Sager" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "Micah has a degree in horticulture and landscape design, amongst other certifications and is highly knowledgeable, highly trained, and just a very nice dude as well. Highly recommend.",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Landscaping Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landscape Install", url: `${siteUrl}/services/landscape-install` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hardscaping", url: `${siteUrl}/services/hardscaping` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sprinklers", url: `${siteUrl}/services/sprinklers` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Maintenance", url: `${siteUrl}/services/maintenance` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tree Care", url: `${siteUrl}/services/tree-care` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fertilizer", url: `${siteUrl}/services/fertilizer` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Spring & Fall Clean-Up", url: `${siteUrl}/services/spring-fall-clean-up` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Snow Removal", url: `${siteUrl}/services/snow-removal` } },
+    ],
+  },
+  sameAs: [
+    "https://www.facebook.com/summitviewlandscape.co/",
+    "https://www.instagram.com/summit_view_landscape",
+    "https://www.google.com/maps/place/Summit+View+Landscape+LLC/",
+  ],
+};
+
+// Combine all JSON-LD schemas
+const allSchemas = [localBusinessSchema];
+if (jsonLd) {
+  if (Array.isArray(jsonLd)) {
+    allSchemas.push(...jsonLd);
+  } else {
+    allSchemas.push(jsonLd);
+  }
+}
 ---
 
 <!doctype html>
@@ -17,15 +139,63 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Geo Meta Tags (Local SEO) -->
+    <meta name="geo.region" content="US-ID" />
+    <meta name="geo.placename" content="Nampa, Idaho" />
+    <meta name="geo.position" content="43.5407;-116.5635" />
+    <meta name="ICBM" content="43.5407, -116.5635" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Summit View Landscape" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicon & Mobile -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#1436C7" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Font Loading (optimized with preconnect + swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <title>{title}</title>
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Structured Data (JSON-LD) -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body class="min-h-dvh">
     <slot />

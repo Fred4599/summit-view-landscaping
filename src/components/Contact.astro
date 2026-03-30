@@ -33,14 +33,14 @@ const services = [
         <div class="mt-10 space-y-6">
           <div class="border-l-2 border-brand-blue pl-5">
             <p class="text-sm font-semibold text-text-muted">Call or Text</p>
-            <a href="tel:+12085551234" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
-              (208) 555-1234
+            <a href="tel:+12086152104" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
+              (208) 615-2104
             </a>
           </div>
           <div class="border-l-2 border-brand-blue pl-5">
             <p class="text-sm font-semibold text-text-muted">Email Us</p>
-            <a href="mailto:info@summitviewlandscape.com" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
-              info@summitviewlandscape.com
+            <a href="mailto:info@summitviewlandscape.co" class="text-body font-bold text-brand-black hover:text-brand-blue transition-colors duration-200 cursor-pointer">
+              info@summitviewlandscape.co
             </a>
           </div>
           <div class="border-l-2 border-brand-blue pl-5">
@@ -116,7 +116,7 @@ const services = [
                 required
                 autocomplete="tel"
                 class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black placeholder:text-text-muted transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none"
-                placeholder="(208) 555-1234"
+                placeholder="(208) 615-2104"
               />
             </div>
             <!-- Service -->
@@ -131,6 +131,22 @@ const services = [
               >
                 <option value="">Select a service...</option>
                 {services.map((s) => <option value={s}>{s}</option>)}
+              </select>
+            </div>
+            <!-- Preferred Contact Method -->
+            <div class="sm:col-span-2">
+              <label for="contact-method" class="block text-sm font-semibold text-brand-black">
+                Preferred Contact Method
+              </label>
+              <select
+                id="contact-method"
+                name="contact-method"
+                class="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-3 text-body text-brand-black transition-colors duration-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 focus:outline-none cursor-pointer"
+              >
+                <option value="">Select preferred contact method...</option>
+                <option value="Phone Call">Phone Call</option>
+                <option value="Text Message">Text Message</option>
+                <option value="Email">Email</option>
               </select>
             </div>
             <!-- Message -->
@@ -167,7 +183,7 @@ const services = [
 
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement;
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
     const originalText = btn.innerHTML;
@@ -175,8 +191,19 @@ const services = [
     btn.disabled = true;
     btn.textContent = "Sending...";
 
-    // Simulate send (replace with real form handler)
-    setTimeout(() => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      await fetch(
+        "https://services.leadconnectorhq.com/hooks/u4qcQRIzRpDg3Z9WrZfF/webhook-trigger/f485cafb-378e-49c8-862f-86859221e710",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+
       btn.textContent = "Quote Request Sent!";
       btn.classList.remove("bg-cta", "hover:bg-cta-hover");
       btn.classList.add("bg-green-600");
@@ -188,6 +215,17 @@ const services = [
         btn.classList.add("bg-cta", "hover:bg-cta-hover");
         btn.classList.remove("bg-green-600");
       }, 3000);
-    }, 1500);
+    } catch {
+      btn.textContent = "Something went wrong. Try again.";
+      btn.classList.remove("bg-cta", "hover:bg-cta-hover");
+      btn.classList.add("bg-red-600");
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.classList.add("bg-cta", "hover:bg-cta-hover");
+        btn.classList.remove("bg-red-600");
+      }, 3000);
+    }
   });
 </script>

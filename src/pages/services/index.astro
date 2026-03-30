@@ -3,9 +3,23 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import { services } from "../../data/services";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.summitviewlandscape.com" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://www.summitviewlandscape.com/services" },
+  ],
+};
 ---
 
-<Layout title="Our Services | Summit View Landscape" description="Explore the full range of landscaping services offered by Summit View Landscape — from design and installation to maintenance and snow removal in Idaho's Treasure Valley.">
+<Layout
+  title="Landscaping Services in Nampa & Treasure Valley | Summit View Landscape"
+  description="Full-service landscaping in Nampa, Idaho — landscape installation, hardscaping, sprinklers, lawn maintenance, tree care, fertilizer, seasonal clean-ups, and snow removal across the Treasure Valley."
+  canonicalPath="/services"
+  jsonLd={breadcrumbSchema}
+>
   <Navbar />
   <main>
     <!-- Page Hero -->
