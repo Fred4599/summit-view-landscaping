@@ -280,7 +280,7 @@ const services = [
 
 <script>
   const form = document.getElementById("booking-form") as HTMLFormElement;
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
     const originalText = btn.innerHTML;
@@ -288,8 +288,20 @@ const services = [
     btn.disabled = true;
     btn.textContent = "Sending...";
 
-    // Simulate send (replace with real form handler)
-    setTimeout(() => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      await fetch(
+        "https://services.leadconnectorhq.com/hooks/u4qcQRIzRpDg3Z9WrZfF/webhook-trigger/f485cafb-378e-49c8-862f-86859221e710",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data as Record<string, string>).toString(),
+        }
+      );
+
       btn.textContent = "Quote Request Sent!";
       btn.classList.remove("bg-cta", "hover:bg-cta-hover");
       btn.classList.add("bg-green-600");
@@ -301,6 +313,17 @@ const services = [
         btn.classList.add("bg-cta", "hover:bg-cta-hover");
         btn.classList.remove("bg-green-600");
       }, 3000);
-    }, 1500);
+    } catch {
+      btn.textContent = "Something went wrong. Try again.";
+      btn.classList.remove("bg-cta", "hover:bg-cta-hover");
+      btn.classList.add("bg-red-600");
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.classList.add("bg-cta", "hover:bg-cta-hover");
+        btn.classList.remove("bg-red-600");
+      }, 3000);
+    }
   });
 </script>

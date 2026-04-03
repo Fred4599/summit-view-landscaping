@@ -199,8 +199,9 @@ const services = [
         "https://services.leadconnectorhq.com/hooks/u4qcQRIzRpDg3Z9WrZfF/webhook-trigger/f485cafb-378e-49c8-862f-86859221e710",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data as Record<string, string>).toString(),
         }
       );
 
